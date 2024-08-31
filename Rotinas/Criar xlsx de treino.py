@@ -20,8 +20,8 @@ datafinal = pd.DataFrame(columns=[f"a{str(i).zfill(4)}" for i in range(1, 201)] 
 for arquivo in arq:
     dados = carregar_dados_xlsx(f"{LOCALXLSXTREINO}{arquivo}")
     #Transformar dados numa lista
-    dados = np.array(dados)
     dados = dados.tolist()
+    dados = np.array(dados)
     #Selecionar 200 pontos desses dados uniformemente e adicionar a um novo dataframe
     indices = np.linspace(0, len(dados) - 1, 200, dtype=int)
     selected_elements = dados[indices]
