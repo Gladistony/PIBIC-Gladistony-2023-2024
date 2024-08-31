@@ -16,7 +16,6 @@ for dataset in eventos:
 ultima_versao = list(ultima_versao.values())
 print(f"Lista de versiones de eventos {ultima_versao}")
 print(f"Total de eventos {len(ultima_versao)}")
-ultima_versao = ['GW150914-v3', 'GW151012-v3']
 temposGPS = []
 for version in ultima_versao:
     events = event_gps(version)
@@ -25,7 +24,7 @@ print(f"Lista de segmentos {temposGPS}")
 OBSERV = ['G1', 'H1', 'L1', 'V1', 'K1']
 ldata = []
 segmentos = []
-intervalo = 5
+intervalo = 512
 for gps in temposGPS:
     segment = (int(gps)-intervalo, int(gps)+intervalo)
     segmentos.append(segment)
@@ -39,5 +38,5 @@ for segmento in segmentos:
         except Exception as e:
             print(f"Não foi possível obter dados para {obs} no segmento {segmento}: {e}")
     ldata.append(dado)
-    data.write(f"{obs}-{ultima_versao[id]}.hdf5", "hdf5")
+    data.write(f"data/{obs}-{ultima_versao[id]}.hdf5", "hdf5")
     id += 1
